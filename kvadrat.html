@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вращающийся квадрат</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> <!-- Подключаем CSS -->
+</head>
+<body>
+{#    <div class="cube"></div> <!-- Квадрат для анимации -->#}
+
+    <div class="scene">
+        <div class="cube">
+            <div class="face front">Фронт</div>
+            <div class="face back">Задняя</div>
+            <div class="face left">Левая</div>
+            <div class="face right">Правая</div>
+            <div class="face top">Верхняя</div>
+            <div class="face bottom">Нижняя</div>
+        </div>
+    </div>
+</body>
+</html>

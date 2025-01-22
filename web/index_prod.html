@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Links</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> <!-- Подключаем CSS -->
+</head>
+<body>
+    <h1>Ссылки на API</h1>
+    <ul>
+        <li><a href="/">Главная страница</a></li>
+        <li><a href="/users">Получить пользователей (GET)</a></li>
+        <li><a href="/data">Получить данные (GET)</a></li>
+        <li><a href="/data" onclick="postData(); return false;">Отправить данные (POST)</a></li>
+        <li><a href="#" onclick="addData(); return false;">Добавить данные (POST)</a></li>
+    </ul>
+    <div class="scene">
+        <div class="cube">
+            <div class="face front">
+            <span class="text">ТЫПИДОР</span>
+            </div>
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face left"></div>
+            <div class="face right"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+        </div>
+    </div>
+
+    <script>
+        // Функция для отправки POST-запроса
+        function postData() {
+            fetch('/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Успех:', data);
+                alert('Данные успешно отправлены!');
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при отправке данных.');
+            });
+        }
+    </script>
+    <script>
+        // Функция для отправки POST-запроса
+        function addData() {
+            // Предопределенные данные для добавления
+            const testDataString = "Тестовая строка " + Math.floor(Math.random() * 100); // Генерируем случайную строку
+
+            fetch('/data_add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ test_data_string: testDataString })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Успех:', data);
+                alert('Данные успешно добавлены! ID: ' + data.id);
+            })
+            .catch((error) => {
+                console.error('Ошибка:', error);
+                alert('Произошла ошибка при добавлении данных.');
+            });
+        }
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Выбираем случайную грань
+        const faces = ['front', 'back', 'left', 'right', 'top', 'bottom'];
+        const randomFace = faces[Math.floor(Math.random() * faces.length)];
+
+        // Находим элемент грани и добавляем текст
+        const faceElement = document.querySelector(`.${randomFace}`);
+        const textElement = document.createElement('span');
+        textElement.className = 'text';
+        textElement.innerText = 'ТЫПИДОР';
+
+        faceElement.appendChild(textElement);
+    });
+</script>
+
+</body>
+</html>
