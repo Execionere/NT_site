@@ -18,7 +18,7 @@ services:
     image: wrouesnel/postgres_exporter:latest
     restart: always
     environment:
-      DATA_SOURCE_NAME: "exsi:testhome@tcp(postgres:5432)/ntDB" # Замените на ваши параметры
+      DATA_SOURCE_NAME: "postgresql://exsi:testhome@postgres:5432/ntDB"
     ports:
       - "9187:9187"
     depends_on:
@@ -41,8 +41,10 @@ services:
       - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=testhome # Замените на желаемый пароль администратора
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning #Провиженинг
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
 
   prometheus:
     image: prom/prometheus:v2.47.1
