@@ -10,6 +10,6 @@ datasources:
     type: influxdb
     access: proxy
     url: http://192.168.3.2:8086
+    database: nt_test_db
     jsonData:
       httpMode: GET
-      database: nt_test_db

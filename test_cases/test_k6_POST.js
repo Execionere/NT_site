@@ -9,9 +9,9 @@ export const options = {
             timeUnit: '60s', // Время для достижения целевой скорости
             preAllocatedVUs: 1, // Предварительно выделенные VUs
             stages: [
-                { target: 1, duration: '1m' }, // Поддерживаем 1 RPS в течение первой минуты
-                { target: 2, duration: '1m' }, // Увеличиваем до 2 RPS за одну минуту
-                { target: 2, duration: '2m' }, // Поддерживаем 2 RPS в течение двух минут
+                { target: 10, duration: '1m' }, // Поддерживаем 1 RPS в течение первой минуты
+                { target: 20, duration: '1m' }, // Увеличиваем до 2 RPS за одну минуту
+                { target: 20, duration: '2m' }, // Поддерживаем 2 RPS в течение двух минут
                 { target: 4, duration: '1m' }, // Увеличиваем до 4 RPS за одну минуту
                 { target: 4, duration: '2m' }, // Поддерживаем 4 RPS в течение двух минут
                 { target: 0, duration: '30s' }, // Останавливаем нагрузку за полминуты
