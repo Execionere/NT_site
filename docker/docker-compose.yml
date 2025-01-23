@@ -13,6 +13,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql # Монтирование SQL-скрипта
+      - ./init_pg_hba.sh:/docker-entrypoint-initdb.d/init_pg_hba.sh
 
   postgres_exporter:
     image: wrouesnel/postgres_exporter:latest
