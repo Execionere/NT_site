@@ -1,8 +1,8 @@
 {
   "__inputs": [
     {
-      "name": "DS_DUMMY",
-      "label": "DUMMY",
+      "name": "DS_influx",
+      "label": "influxdb",
       "description": "influxdb datasource",
       "type": "datasource",
       "pluginId": "influxdb",
@@ -66,7 +66,7 @@
       }
     ]
   },
-  "description": "A dashboard for visualizing results from the k6.io load testing tool, using the InfluxDB exporter.\r\n\r\ninspire from https://grafana.com/dashboards/2587 & k6 cloud dashboard.\r\n\r\nsimple & informative dashboard\r\n\r\n",
+  "description": "",
   "editable": true,
   "gnetId": 14801,
   "graphTooltip": 2,
@@ -75,7 +75,7 @@
   "links": [],
   "panels": [
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -173,7 +173,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -304,7 +304,7 @@
       "circleBackground": false,
       "colorBackground": false,
       "colorValue": true,
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "defaultColor": "rgb(117, 117, 117)",
       "format": "percent",
       "gauge": {
@@ -489,7 +489,7 @@
       "valueName": "total"
     },
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -587,7 +587,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "decimals": 0,
@@ -686,7 +686,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "decimals": 2,
@@ -814,7 +814,7 @@
       "type": "stat"
     },
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "mappings": [],
@@ -918,7 +918,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fill": 1,
       "fillGradient": 2,
       "gridPos": {
@@ -1204,7 +1204,7 @@
       }
     },
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "description": "",
       "fieldConfig": {
         "defaults": {
@@ -1328,7 +1328,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {},
         "overrides": [
@@ -1468,7 +1468,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "unit": "ms"
@@ -1610,7 +1610,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {},
         "overrides": [
@@ -1750,7 +1750,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {},
         "overrides": [
@@ -1890,7 +1890,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {},
         "overrides": [
@@ -2026,7 +2026,7 @@
       }
     },
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -2329,7 +2329,7 @@
       "type": "table"
     },
     {
-      "datasource": "${DS_DUMMY}",
+      "datasource": "${DS_influx}",
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -2436,7 +2436,7 @@
       {
         "allValue": "*",
         "current": {},
-        "datasource": "${DS_DUMMY}",
+        "datasource": "${DS_influx}",
         "definition": "SHOW TAG VALUES FROM \"http_req_duration\" WITH KEY = \"name\"",
         "description": null,
         "error": null,
