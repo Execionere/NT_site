@@ -32,7 +32,6 @@ services:
     volumes:
       - influxdb_data:/var/lib/influxdb
       - ./init_influx.sh:/docker-entrypoint-initdb.d/init_influx.sh
-    command: [ "/bin/bash", "/docker-entrypoint-initdb.d/init_influx.sh" ]
 
   grafana:
     image: grafana/grafana:10.1.4-ubuntu

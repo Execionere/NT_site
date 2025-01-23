@@ -5,3 +5,11 @@ datasources:
     access: proxy
     url: http://192.168.3.2:9090
     isDefault: true
+
+  - name: InfluxDB
+    type: influxdb
+    access: proxy
+    url: http://192.168.3.2:8086
+    isDefault: true
+    jsonData:
+      httpMode: POST
