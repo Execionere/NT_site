@@ -11,5 +11,5 @@ datasources:
     access: proxy
     url: http://192.168.3.2:8086
     jsonData:
-      httpMode: POST
+      httpMode: GET
       database: nt_test_db
