@@ -51,29 +51,53 @@
         }
     </script>
     <script>
-        // Функция для отправки POST-запроса
-        function addData() {
-            // Предопределенные данные для добавления
-            const testDataString = "Тестовая строка " + Math.floor(Math.random() * 100); // Генерируем случайную строку
+    // Получаем переменную из шаблона
+    const testDataString = "{{ test_data_string }}";
 
-            fetch('/data_add', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ test_data_string: testDataString })
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Успех:', data);
-                alert('Данные успешно добавлены!');
-            })
-            .catch((error) => {
-                console.error('Ошибка:', error);
-                alert('Произошла ошибка при добавлении данных.');
-            });
-        }
-    </script>
+    // Функция для отправки POST-запроса
+    function addData() {
+        fetch('/data_add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ test_data_string: testDataString })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Успех:', data);
+            alert('Данные успешно добавлены!');
+        })
+        .catch((error) => {
+            console.error('Ошибка:', error);
+            alert('Произошла ошибка при добавлении данных.');
+        });
+    }
+</script>
+{#    <script>#}
+{#        // Функция для отправки POST-запроса#}
+{#        function addData() {#}
+{#            // Предопределенные данные для добавления#}
+{#            const testDataString = "Тестовая строка " + Math.floor(Math.random() * 100); // Генерируем случайную строку#}
+{##}
+{#            fetch('/data_add', {#}
+{#                method: 'POST',#}
+{#                headers: {#}
+{#                    'Content-Type': 'application/json'#}
+{#                },#}
+{#                body: JSON.stringify({ test_data_string: testDataString })#}
+{#            })#}
+{#            .then(response => response.json())#}
+{#            .then(data => {#}
+{#                console.log('Успех:', data);#}
+{#                alert('Данные успешно добавлены!');#}
+{#            })#}
+{#            .catch((error) => {#}
+{#                console.error('Ошибка:', error);#}
+{#                alert('Произошла ошибка при добавлении данных.');#}
+{#            });#}
+{#        }#}
+{#    </script>#}
     <script>
     document.addEventListener("DOMContentLoaded", function() {
         // Выбираем случайную грань

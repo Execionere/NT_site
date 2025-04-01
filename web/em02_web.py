@@ -43,7 +43,9 @@ cities = [
 
 @app.route('/')
 def home():
-    return render_template('index.html')
+    random_number = random.randint(1, 100)
+    test_index_string = request.args.get('test_data_string', (f"Тестовая строка {random_number}"))
+    return render_template('index.html', test_data_string=test_index_string)
 
 def create_response(data):
     """Создает ответ в формате JSON с правильной кодировкой."""
@@ -76,25 +78,70 @@ def post_data():
     if data == {}:
         return create_response(cities)
 
+
 @app.route('/data_add', methods=['POST'])
 def data_add():
-    # Генерируем новый UUID для новой записи
-    new_uuid = str(uuid.uuid4())
+    try:
+        # Получаем и валидируем данные запроса
+        request_data = request.get_json()
+        # if not request_data:
+        #     return create_response({"error": "Request body is empty"}), 400
+        #
+        test_data_string = request_data.get('test_data_string')
+        # if not test_data_string:
+        #     return create_response({"error": "Missing 'test_data_string' in request"}), 400
 
-    # Используем фиксированное значение для test_data_string
-    random_number = random.randint(1, 100)
-    test_data_string = (f"Тестовая строка {random_number}")  # Задаем значение напрямую
+        # Генерация UUID
+        new_uuid = str(uuid.uuid4())
 
-    # Создаем SQL-запрос для вставки новой записи
-    insert_query = text(
-        "INSERT INTO test_schema.test_table (uuid, test_data_string) VALUES (:uuid, :test_data_string);"
-    )
+        # Логирование полученных данных
+        app.logger.debug(f"Received data: {test_data_string}")
 
-    # Выполняем запрос с параметрами
-    db.session.execute(insert_query, {'uuid': new_uuid, 'test_data_string': test_data_string})
-    db.session.commit()
+        # SQL-запрос
+        insert_query = text("""
+            INSERT INTO test_schema.test_table (uuid, test_data_string) 
+            VALUES (:uuid, :test_data_string)
+        """)
 
-    return create_response({"message": "Данные успешно добавлены", "uuid": new_uuid, "string": test_data_string})
+        # Выполнение запроса
+        db.session.execute(insert_query, {
+            'uuid': new_uuid,
+            'test_data_string': test_data_string
+        })
+        db.session.commit()
+
+        return create_response({
+            "message": "Данные успешно добавлены",
+            "uuid": new_uuid,
+            "received_string": test_data_string
+        })
+
+    except Exception as e:
+        db.session.rollback()
+        app.logger.error(f"Error: {str(e)}")
+        return create_response({"error": "Internal server error"}), 500
+
+
+# @app.route('/data_add', methods=['POST'])
+# def data_add():
+#     request_data = request.get_json()
+#
+#     # Генерируем новый UUID для новой записи
+#     new_uuid = str(uuid.uuid4())
+#
+#     test_data_string = request_data['test_data_string']
+#     print(test_data_string)
+#
+#     # Создаем SQL-запрос для вставки новой записи
+#     insert_query = text(
+#         "INSERT INTO test_schema.test_table (uuid, test_data_string) VALUES (:uuid, :test_data_string);"
+#     )
+#
+#     # Выполняем запрос с параметрами
+#     db.session.execute(insert_query, {'uuid': new_uuid, 'test_data_string': test_data_string})
+#     db.session.commit()
+#
+#     return create_response({"message": "Данные успешно добавлены", "uuid": new_uuid, "string": test_data_string})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)
